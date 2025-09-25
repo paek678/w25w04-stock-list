@@ -1,4 +1,5 @@
 import React from 'react'
+import TickerCard from './TickerCard'
 
 const stocks = [
   { ticker: 'NVDA', name: '엔비디아', currentPrice: 178.43, previousClose: 181.40 },
@@ -9,9 +10,9 @@ const stocks = [
 
 function App() {
   return (
-    <div>
-      <h1>오늘의 주식 시세</h1>
-      <div>
+    <div className='bg-gray-100 min-h-screen p-8 flex flex-col items-center'>
+     <h1 className="text-4xl font-bold text-gray-800 mb-10">오늘의 주식 시세</h1>
+      <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-6 w-full max-w-7xl">
         {
           stocks.map(stock => (
             <TickerCard 
@@ -28,31 +29,5 @@ function App() {
   )
 }
 
-const TickerCard = ({ ticker, name, currentPrice, previousClose }) => {
-  const priceChange = currentPrice - previousClose
-  const isPositive = priceChange >= 0
-
-  return (
-    <div>
-      <div>
-        <h2>{name}</h2>
-        <div>{ticker}</div>
-      </div>
-      <div></div>
-      
-      <div>
-        ${currentPrice.toFixed(2)}
-      </div>
-
-      <div>
-        {isPositive ? '▲' : '▼'} {priceChange.toFixed(2)}
-      </div>
-      
-      <div>
-        전일 종가: ${previousClose.toFixed(2)}
-      </div>
-    </div>
-  )
-}
 
 export default App
